@@ -43,3 +43,76 @@ var addTwoNumbers = function(l1, l2) {
    return list
     
 };
+
+//solution accepted by leetcode
+// the function below is a constructor and can be used inside the program
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function(l1, l2) {
+
+    if(l1 === null && l2 === null) {
+        return null;
+    }
+
+    if(l1 === null) {
+        return l2;
+    }
+    if(l2 === null) {
+        return l1;
+    }
+// adding the two values from two different linkedlist and putting that to in a new list
+//carry is the value that carries over to the next list value if it is more that one digit
+    let list = null
+    let carry = 0
+    while(l1 !== null && l2 !== null) {
+        let sum = (l1.val + l2.val + carry) % 10;
+        carry = parseInt((l1.val + l2.val + carry) / 10);
+        list = {val: sum, next: list}
+        l1 = l1.next
+        l2 = l2.next
+    }
+   //if the two linked lists have different lengths 
+    while(l1 !== null) {
+        let sum = (l1.val + carry) % 10;
+        carry = parseInt((l1.val + carry) / 10);
+        list = {val: sum, next: list}
+        l1 = l1.next
+    }
+
+    while(l2 !== null) {
+        let sum = (l2.val + carry) % 10;
+        carry = parseInt((l2.val + carry) / 10);
+        list = {val: sum, next: list}
+        l2 = l2.next
+    }
+
+    if(carry > 0) {
+        list = {val: carry, next: list}
+    }
+    
+    if(list.next === null) {
+        return list;
+    }
+    
+  //reverse a linkedlist
+    let prev = null
+    while (list !== null) {
+        let next = list.next
+        list.next = prev
+        prev = list
+        list = next
+    }
+    
+    return prev;
+};
+
