@@ -1,4 +1,4 @@
-//in an iterative way
+//bruteforce
 function fibo(n){
   let firstNum = 0
   let secondNum = 1
