@@ -13,6 +13,7 @@ var missingNumber = function(nums) {
 
 //Optimzed approach 
 var missingNumber = function(nums) {
+    // n = nums.length+1
     let n = nums.length
     if(n === 0){
         return
