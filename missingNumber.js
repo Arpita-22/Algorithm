@@ -30,3 +30,12 @@ var missingNumber = function(nums) {
     return missingNo
     
 };
+
+//another way
+
+function missingNo(arr){
+  let n = arr.length+1
+  let sumOfNaturalnos = n*(n+1)/2
+  let sumOfArr = arr.reduce((total,element) => total + element)
+  return sumOfNaturalnos - sumOfArr
+}
