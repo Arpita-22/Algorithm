@@ -32,3 +32,5 @@ function maxSubArraySum(arr,num){
     }
     return maxSum
     }
+
+    
