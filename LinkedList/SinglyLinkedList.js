@@ -1,3 +1,5 @@
+
+//insertion O(1) and removal O(1) or O(n) time amd searching nad accessing takes O(n) time
 class Node{
     constructor(val){
       this.val = val;
@@ -143,5 +145,31 @@ class Node{
       prevNode.next = removedNode.next;
       this.length--;
       return removedNode;
+    }
+//reverse a linkedlist
+    reverse(){
+      let node = this.head;
+      this.head = this.tail;
+      this.tail = node;
+      let next;
+      let prev = null;
+      for(let i = 0; i < this.length;i++){
+        next = node.next;
+        node.next = prev;
+        prev = node;
+        node = next;
+      }
+      return this;
+    }
+
+    //print the values of the linkedlist
+    print(){
+      let arr = [];
+      let current = this.head;
+      while(current){
+        arr.push(current.val);
+        current = current.next;
+      }
+      console.log(arr);
     }
   }
