@@ -30,10 +30,26 @@ total % 11 //8
 
 function hash(key, arrLen){
     let total = 0;
+    // for(let i = 0; i < key.length; i++){
+    //     let char = key[i];
+    // }
     for(let char of key){
       //map a to 1, b to 2, c to 3
       let value = char.charCodeAt(0) - 96;
       total = (total + value) % arrLen;
+    }
+    return total;
+  }
+
+  function hash(key, arrLen){
+    //use array length as prime numbers to decrease collision
+    let total = 0;
+    let weirdPrime = 31;
+    for(let i = 0; i < Math.min(key.length, 100); i++){
+      //map a to 1, b to 2, c to 3
+      let char = key[i];
+      let value = char.charCodeAt(0) - 96;
+      total = (total * weirdPrime + value) % arrLen;
     }
     return total;
   }

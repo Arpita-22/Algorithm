@@ -1,4 +1,3 @@
-
 class Node{
     constructor(val){
       this.val = val;
@@ -121,24 +120,40 @@ find(val){
     return false;
     }
 
-    BFS(){
-        let node = this.root;
-        let queue = [];
+    DFSPreOrder(){
         let visited = [];
-
-        queue.push(node);
-        while(queue.length){
-            node = queue.shift();
-            visited.push(node);
-            visited.push(node.val);
-            if(node.left){
-                queue.push(node.left);
-            }
-            if(node.right){
-                queue.push(node.right);
-            }
+        function traverse(node){
+          visited.push(node.val);
+          if(node.left) traverse(node.left);
+          if(node.right) traverse(node.right);
         }
-        return visited //[ 10, 6, 15, 3, 8, 20 ]
+        traverse(this.root);
+        return visited; //[ 10, 6, 3, 8, 15, 20 ]
+      }
+
+    DFSPostOrder(){
+    let visited = [];
+    function traverse(node){
+        if(node.left) traverse(node.left);
+    //  instead of if you can use node.left && traverse(node.left)
+        if(node.right) traverse(node.right);
+    //  instead of if you can use node.right && traverse(node.right)
+        visited.push(node.val);
     }
+    traverse(this.root);
+    return visited; //[ 3, 8, 6, 20, 15, 10 ]
+    }
+
+    DFSInOrder(){
+    let visited = [];
+    function traverse(node){
+        if(node.left) traverse(node.left);
+        visited.push(node.val);
+        if(node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return visited; //[ 3, 6, 8, 10, 15, 20 ]
+    }
+  
 
 }
