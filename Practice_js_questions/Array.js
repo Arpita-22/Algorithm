@@ -119,3 +119,18 @@ findAllOccurrences = function(arr, target) {
     }
     return newArr; 
   }
+
+
+//Reduce
+let arr = [1,2,3];
+
+arr.reduce((sum, el) =>  {
+  return(sum + el);
+  },0);
+
+
+  function map(arr, mapper){
+    return arr.reduce((acc, el) =>{
+      return [...acc, mapper(el)];
+    }, [])
+  }

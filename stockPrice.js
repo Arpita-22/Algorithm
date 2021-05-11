@@ -10,7 +10,7 @@
 //2nd loop through the array 2nd element
 //if the remainingPrice = arr[j] - arr[i]
 //if the 
-
+// [3, 5, 4, 2, 10]
 function stockPrice(arr){
     let maxProfit = float('-inf');
     let minStockPrice = arr[0]
@@ -22,20 +22,17 @@ function stockPrice(arr){
     }
 
     for(let i = 0 ; i < arr.length ; i++){
-        if(minStockPrice > arr[i]){
+        if(minStockPrice > arr[i]) {
             minStockPrice = arr[i];
-        }else{
-            index = i;
+            buyIndex = i;
         }
-
     }
+
     for(let i = buyIndex; i < arr.length; i++){
         let diff = arr[i] - minStockPrice  ;
         if(maxProfit < diff){
             maxProfit = diff;
-        }else{
             sellIndex = i;
-        }
     }
     return[buyIndex, sellIndex]
 }
@@ -60,3 +57,20 @@ function stockPrice(arr){
 
 }
 
+//solved 
+
+function stockPrice(stocks){
+    let minStockPrice = stocks[i];
+    let maxProfit = 0;
+
+    for(let i = 0; i < stocks.length; i++){
+        if(arr[i] < minStockPrice){
+            minStockPrice = arr[i];
+        }
+        else{
+            maxProfit = Math.max(maxProfit, (arr[i] - minStockPrice))
+        }
+    }
+
+    return maxProfit;
+}
